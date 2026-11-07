@@ -4,14 +4,32 @@ A working React / TypeScript competition demonstration of a shared cake-order re
 
 ## Run in GitHub Codespaces
 
-1. Open this repository in a Codespace. The included `.devcontainer/devcontainer.json` uses Node 22 and runs `npm ci` automatically.
-2. In the terminal, run `npm run dev`.
+1. Open this repository in a Codespace. The included `.devcontainer/devcontainer.json` uses Node 22, installs dependencies with `npm ci`, and starts the app automatically each time the container starts.
+2. Wait for the startup message confirming that Bing’s Bakery is responding on port 5173. To start or check it manually, run `node .devcontainer/start-app.mjs`. The helper keeps the server running after the command returns and prints its log location.
 3. Open the forwarded **5173** port in Codespaces’ **Ports** panel. Start at `/` for customers or `/demo` for the guided competition scenarios.
 4. Select **Open staff workspace** or visit `/staff/login` to choose a fictional demo role. Choose **Owner** to explore settings and backup restoration.
+
+The Ports panel should use **HTTP** as the port protocol; GitHub provides the public HTTPS forwarding URL. Vite binds all interfaces and stays on 5173; it reports an error instead of silently changing to 5174. `npm run dev` (or `npm start`) is also available for foreground development; leave that terminal running.
 
 Keep the forwarded port private when working with your demo. No credentials, API keys, database account or paid service is needed. Font files and illustrated cake assets are bundled; the running app does not need external image or font services.
 
 For another machine: install Node 22 or later, run `npm ci`, then `npm run dev`. If your environment cannot write npm’s default cache, use `npm ci --cache /tmp/cakedesk-npm`.
+
+## If Codespaces shows HTTP 502
+
+A forwarded URL needs the app to be running inside that Codespace. Publishing the separate Codex cloud environment or pushing files to GitHub does not start its server.
+
+In the **Codespaces terminal**, from the repository folder, run:
+
+```sh
+git pull origin main
+npm ci
+node .devcontainer/start-app.mjs
+```
+
+Wait for **“Bing’s Bakery is responding on port 5173”** (or “already responding”), then open **Ports → 5173 → Open in Browser**. Set that port’s protocol to **HTTP**, not HTTPS. Refresh the forwarded page. Use the Ports panel URL from your current Codespace rather than an old browser bookmark.
+
+If startup reports a busy port or another error, read the log path printed by the command. The helper does not kill other applications, and it never reports readiness until the app responds successfully. To use the new automatic-start lifecycle in an existing Codespace, run **Codespaces: Rebuild Container**; pulling files alone does not rerun container lifecycle commands.
 
 ## What works
 

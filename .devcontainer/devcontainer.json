@@ -3,8 +3,17 @@
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
   "forwardPorts": [5173],
   "portsAttributes": {
-    "5173": { "label": "Bing’s Bakery", "onAutoForward": "notify" }
+    "5173": {
+      "label": "Bing\u2019s Bakery",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    }
   },
   "postCreateCommand": "npm ci",
-  "customizations": { "vscode": { "extensions": ["dbaeumer.vscode-eslint"] } }
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  },
+  "postStartCommand": "node .devcontainer/start-app.mjs"
 }

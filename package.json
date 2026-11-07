@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview --host 0.0.0.0",
+    "preview": "vite preview",
     "test": "vitest run src/model.test.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "start": "npm run dev"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.3.0",
