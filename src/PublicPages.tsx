@@ -16,7 +16,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import { PublicHeader, PublicFooter, CakeArt } from "./PublicLayout";
+import { PublicHeader, PublicFooter } from "./PublicLayout";
 import {
   createEnquiry,
   loadEnquiries,
@@ -197,13 +197,15 @@ export function HomePage() {
           </div>
           <div className="bakery-hero-display">
             <div className="bakery-art-frame">
-              <CakeArt floral />
-              <span className="bakery-art-script">
-                A little joy, made by hand.
-              </span>
-              <span className="bakery-art-topline">
-                BING’S BAKERY · NEWARK, DE
-              </span>
+              <img
+                className="bakery-hero-photo"
+                src="/images/homepage-celebration-cake.webp"
+                alt="Ivory buttercream celebration cake with blush sugar roses, peonies and sage-green leaves on a cream ceramic stand"
+                width={1254}
+                height={1254}
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
             <div className="bakery-hero-sticker">
               <Flower2 size={23} />
@@ -214,7 +216,7 @@ export function HomePage() {
               </span>
             </div>
             <span className="bakery-art-caption">
-              ILLUSTRATED INSPIRATION · MADE TO BE YOURS
+              GENERATED CAKE INSPIRATION · MADE TO BE YOURS
             </span>
           </div>
         </section>

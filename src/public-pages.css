@@ -137,60 +137,12 @@
   overflow: hidden;
   background: #eee3da;
 }
-.bakery-art-frame > .cake-art {
-  height: 100%;
-  background: radial-gradient(ellipse at 45% 20%, #f4ece1, #e8d7cc);
-}
-.bakery-art-frame .cake-body {
-  width: 250px;
-  height: 146px;
-  box-shadow:
-    inset -20px 0 20px #d9c8ac,
-    inset 15px 0 20px #fff8e7;
-}
-.bakery-art-frame .cake-top {
-  width: 250px;
-  height: 78px;
-  top: calc(48% - 48px);
-}
-.bakery-art-frame .cake-writing {
-  top: 53px;
-  font-size: 24px;
-  color: #9e7d63;
-}
-.bakery-art-frame .cake-plate {
-  width: 322px;
-  height: 61px;
-  top: calc(48% + 100px);
-}
-.bakery-art-frame .cake-shadow {
-  width: 320px;
-  top: calc(48% + 121px);
-  height: 50px;
-}
-.bakery-art-frame .art-caption {
-  display: none;
-}
-.bakery-art-script {
-  position: absolute;
-  bottom: 25px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font:
-    italic 24px "EB Garamond",
-    Georgia,
-    serif;
-  color: #8c705b;
-}
-.bakery-art-topline {
-  position: absolute;
-  top: 70px;
-  text-align: center;
+.bakery-art-frame > .bakery-hero-photo {
+  display: block;
   width: 100%;
-  font-size: 7px;
-  letter-spacing: 0.2em;
-  color: #a58c76;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 .bakery-hero-sticker {
   position: absolute;
@@ -1118,34 +1070,6 @@
   .bakery-art-frame {
     height: 370px;
   }
-  .bakery-art-frame .cake-body {
-    width: 205px;
-    height: 123px;
-  }
-  .bakery-art-frame .cake-top {
-    width: 205px;
-    height: 65px;
-    top: calc(48% - 41px);
-  }
-  .bakery-art-frame .cake-plate {
-    width: 265px;
-    height: 54px;
-    top: calc(48% + 81px);
-  }
-  .bakery-art-frame .cake-shadow {
-    top: calc(48% + 107px);
-  }
-  .bakery-art-frame .cake-writing {
-    font-size: 20px;
-    top: 42px;
-  }
-  .bakery-art-script {
-    font-size: 21px;
-  }
-  .bakery-art-topline {
-    top: 57px;
-    font-size: 6px;
-  }
   .bakery-hero-sticker {
     display: none;
   }
@@ -1342,35 +1266,6 @@
   .bakery-art-frame {
     height: 330px;
     border-radius: 140px 140px 5px 5px;
-  }
-  .bakery-art-frame .cake-body {
-    width: 225px;
-    height: 119px;
-  }
-  .bakery-art-frame .cake-top {
-    width: 225px;
-    height: 71px;
-    top: calc(48% - 44px);
-  }
-  .bakery-art-frame .cake-plate {
-    width: 290px;
-    top: calc(48% + 78px);
-  }
-  .bakery-art-frame .cake-shadow {
-    width: 290px;
-    top: calc(48% + 97px);
-  }
-  .bakery-art-frame .cake-writing {
-    font-size: 21px;
-    top: 42px;
-  }
-  .bakery-art-topline {
-    top: 38px;
-    font-size: 6px;
-  }
-  .bakery-art-script {
-    font-size: 23px;
-    bottom: 18px;
   }
   .bakery-art-caption {
     font-size: 6px;
