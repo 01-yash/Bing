@@ -179,10 +179,12 @@ test("owner backup exports and restores orders and embedded images; CSV export s
     .getByRole("button", { name: "Download full local backup" })
     .click();
   const file = await event;
-  expect(file.suggestedFilename()).toMatch(/cakedesk-backup/);
+  expect(file.suggestedFilename()).toMatch(/bings-bakery-backup/);
   const path = await file.path();
   expect(path).toBeTruthy();
-  await page.getByLabel("Restore a CakeDesk JSON export").setInputFiles(path!);
+  await page
+    .getByLabel("Restore a Bing’s Bakery JSON export")
+    .setInputFiles(path!);
   await expect(page.getByText("5 records validated")).toBeVisible();
   page.once("dialog", (d) => d.accept());
   await page.getByRole("button", { name: "Restore validated backup" }).click();
@@ -190,7 +192,7 @@ test("owner backup exports and restores orders and embedded images; CSV export s
   await page.goto("/staff/reports");
   const csvEvent = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export orders CSV" }).click();
-  expect((await csvEvent).suggestedFilename()).toBe("cakedesk-orders.csv");
+  expect((await csvEvent).suggestedFilename()).toBe("bings-bakery-orders.csv");
 });
 test("mobile public flow and tablet dashboard fit viewport", async ({
   page,

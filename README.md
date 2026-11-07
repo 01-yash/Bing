@@ -1,4 +1,4 @@
-# Bing’s CakeDesk
+# Bing’s Bakery
 
 A working React / TypeScript competition demonstration of a shared cake-order record for Bing’s Bakery. Warm, responsive customer pages and a practical staff workspace support custom designs, human-reviewed quotes and date-based production.
 
@@ -15,6 +15,9 @@ For another machine: install Node 22 or later, run `npm ci`, then `npm run dev`.
 
 ## What works
 
+- Dedicated Home, Custom cakes, How it works and Contact pages with active navigation, page-specific browser titles and a mobile menu.
+- A validated Contact form saves fictional enquiries in this browser; the staff Contact inbox supports search, filtering, resolve/reopen and a separate export. No message is emailed to the bakery. Call the listed phone number for real enquiries.
+- Dashboard navigation highlights the current section, including nested CakeCards. Summary cards open the correct pickup date or review queue.
 - Four-step public cake request wizard, recoverable drafts, contact validation, immediate reference and persisted confirmation.
 - JPG, PNG and WebP reference uploads up to 2 MB, removable images and numbered spatial design notes.
 - Fast phone/counter intake, recoverable partial drafts, follow-up flag and duplicate warnings.
@@ -26,7 +29,7 @@ For another machine: install Node 22 or later, run `npm ci`, then `npm run dev`.
 - Confirmed-only production and calendar views, independent preparation dates, preparation / ready / pickup transitions.
 - Source counts, measured intake/quote timing when available, incident logs and CSV export.
 - Owner-editable product options, example pricing, opening hours, closure dates, capacity, deposit and quote expiration policies.
-- Full JSON backup generation and restore, including embedded reference images. Same-origin browser tabs refresh their in-memory records when another tab saves.
+- Full cake-order JSON backup generation and restore, including embedded reference images. Contact enquiries have a separate export in Contact inbox. Same-origin browser tabs refresh their in-memory records when another tab saves.
 
 ## Demo boundaries
 
@@ -51,4 +54,4 @@ If Chromium is already installed, set `CI_CHROMIUM_PATH` to its executable for b
 
 ## Source layout
 
-`src/main.tsx` contains reusable UI components and route screens, `src/model.ts` contains the typed records, demo fixtures, availability and persistence helpers, and `src/style.css` provides responsive and print styling. No secrets or real customer records are included. Use the existing checkout for cloud tasks; no Git worktree is needed.
+`src/PublicLayout.tsx` provides shared branding/navigation and route titles, `src/PublicPages.tsx` contains the public pages and contact inbox, `src/contactStore.ts` persists local contact enquiries, `src/main.tsx` contains the ordering and staff workflows, `src/model.ts` contains the typed records, demo fixtures, availability and persistence helpers, and `src/style.css` provides responsive and print styling. No secrets or real customer records are included. Use the existing checkout for cloud tasks; no Git worktree is needed.

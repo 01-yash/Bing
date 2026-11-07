@@ -15,6 +15,7 @@ import {
   useParams,
   useLocation,
   Navigate,
+  useSearchParams,
 } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -65,6 +66,20 @@ import "@fontsource/dm-sans/latin-600.css";
 import "@fontsource/eb-garamond/latin-400.css";
 import "@fontsource/eb-garamond/latin-500.css";
 import "./style.css";
+import {
+  Brand,
+  PublicHeader,
+  PublicFooter,
+  CakeArt,
+  RouteEffects,
+} from "./PublicLayout";
+import {
+  HomePage,
+  CakesPage,
+  HowItWorksPage,
+  ContactPage,
+  ContactInbox,
+} from "./PublicPages";
 type Context = {
   db: DB;
   save: (db: DB) => boolean;
@@ -227,15 +242,19 @@ function App() {
             </Link>
           </span>
         </div>
+        <RouteEffects />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cakes" element={<CakesPage />} />
+          <Route path="/how-it-works" element={<HowItWorksPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/order" element={<Wizard />} />
           <Route path="/order/confirmation" element={<Confirmation />} />
           <Route path="/request/:token" element={<Customer />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/staff/login" element={<Login />} />
           <Route path="/staff/*" element={<Staff />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         {toast && (
           <div className="toast" role="status">
@@ -252,182 +271,23 @@ function App() {
     </C.Provider>
   );
 }
-function Brand() {
-  return (
-    <Link className="brand" to="/">
-      <span className="brand-icon">
-        <ChefHat size={25} />
-      </span>
-      <span>
-        Bing’s <b>CakeDesk</b>
-        <small>A LITTLE CARE IN EVERY ORDER</small>
-      </span>
-    </Link>
-  );
-}
-function PublicHeader() {
-  return (
-    <header className="public-header">
-      <Brand />
-      <nav>
-        <a href="/#cakes">Custom cakes</a>
-        <a href="/#how">How it works</a>
-        <a href="/#contact">Contact</a>
-        <Link className="button small" to="/order">
-          Start a cake order <ArrowUpRight size={15} />
-        </Link>
-      </nav>
-    </header>
-  );
-}
-function CakeArt({ floral = false }: { floral?: boolean }) {
-  return (
-    <div
-      className={"cake-art " + (floral ? "floral" : "")}
-      aria-label={
-        floral
-          ? "Illustration of a floral celebration cake"
-          : "Illustration of a classic layered cake"
-      }
-      role="img"
-    >
-      <div className="cake-shadow" />
-      <div className="cake-plate" />
-      <div className="cake-body">
-        <span className="icing" />
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <i className={"rosette r" + i} key={i}>
-            {floral ? <Flower2 size={35} /> : null}
-          </i>
-        ))}
-        <div className="cake-writing">
-          {floral ? "with love" : "make a wish"}
-        </div>
-      </div>
-      <div className="cake-top" />
-      {!floral && <div className="candles">✦ &nbsp; ✦ &nbsp; ✦</div>}
-      <span className="art-caption">AN IDEA TO MAKE YOUR OWN</span>
-    </div>
-  );
-}
-function Home() {
+function NotFound({ staff = false }: { staff?: boolean }) {
   return (
     <>
-      <PublicHeader />
-      <main className="home">
-        <div className="hero">
-          <div>
-            <p className="eyebrow">BING’S BAKERY · NEWARK, DELAWARE</p>
-            <h1>
-              Have a cake
-              <br />
-              in mind<span>?</span>
-            </h1>
-            <p className="hero-copy">
-              Every celebration starts with an idea. Choose your cake, share
-              your inspiration, and let our team take care of the details.
-            </p>
-            <Link className="button" to="/order">
-              Start your cake <ArrowRight size={17} />
-            </Link>
-            <p className="quiet">
-              No account needed. A real baker reviews every request.
-            </p>
-          </div>
-          <div className="hero-art">
-            <CakeArt floral />
-            <span className="hero-label">Your idea. Our craft.</span>
-          </div>
-        </div>
-        <section id="cakes">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">LET’S MAKE IT YOURS</p>
-              <h2>Two ways to something wonderful.</h2>
-            </div>
-            <p>
-              Simple favorites or a one-of-a-kind idea.
-              <br />
-              There’s a place to start for every celebration.
-            </p>
-          </div>
-          <div className="choice-grid">
-            <Link to="/order?kind=classic" className="choice">
-              <CakeArt />
-              <div>
-                <span className="eyebrow">THE FAMILIAR FAVORITES</span>
-                <h2>A classic cake</h2>
-                <p>
-                  Choose your flavors, add a message, and make a favorite your
-                  own. Example pricing, reviewed by our team.
-                </p>
-                <strong>
-                  Choose your cake <ArrowRight size={18} />
-                </strong>
-              </div>
-            </Link>
-            <Link to="/order?kind=custom" className="choice">
-              <CakeArt floral />
-              <div>
-                <span className="eyebrow">A LITTLE MORE YOU</span>
-                <h2>Something custom</h2>
-                <p>
-                  A photo, a color palette, a very particular idea. Share your
-                  inspiration and we’ll work out the possibilities together.
-                </p>
-                <strong>
-                  Request a custom cake <ArrowRight size={18} />
-                </strong>
-              </div>
-            </Link>
-          </div>
-        </section>
-        <section id="how" className="how">
-          <p className="eyebrow">FROM FIRST IDEA TO FIRST SLICE</p>
-          <h2>Thoughtfully made. Simply ordered.</h2>
-          <div className="three">
-            {[
-              [
-                "01",
-                "Tell us about your cake",
-                "The occasion, the flavors, the details that matter. Add a reference photo if you have one.",
-              ],
-              [
-                "02",
-                "Let’s get the details right",
-                "Our team reviews your design and sends a quote. You approve it before we confirm.",
-              ],
-              [
-                "03",
-                "We’ll see you at pickup",
-                "Your approved design and confirmed pickup stay together, all the way to the counter.",
-              ],
-            ].map(([n, t, p]) => (
-              <div key={n}>
-                <span>{n}</span>
-                <h3>{t}</h3>
-                <p>{p}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+      {!staff && <PublicHeader />}
+      <main className={staff ? "panel" : "narrow panel"}>
+        <p className="eyebrow">LET’S FIND THE RIGHT PLACE</p>
+        <h1>That page isn’t here.</h1>
+        <p>
+          The link may have changed. You can return to the bakery or find your
+          cake orders in the workspace.
+        </p>
+        <Link className="button" to={staff ? "/staff" : "/"}>
+          {staff ? "Back to overview" : "Back to the bakery"}{" "}
+          <ArrowRight size={16} />
+        </Link>
       </main>
-      <footer id="contact">
-        <Brand />
-        <p>
-          253 East Main Street · Newark, DE 19711
-          <br />
-          <a href="tel:3027375310">302-737-5310</a> · Mon–Fri 7–6 · Sat 7–5 ·
-          Sun closed
-        </p>
-        <p>
-          Requests are subject to bakery approval.
-          <br />
-          <Link to="/staff/login">
-            Staff workspace <ArrowUpRight size={12} />
-          </Link>
-        </p>
-      </footer>
+      {!staff && <PublicFooter />}
     </>
   );
 }
@@ -864,6 +724,7 @@ function Wizard() {
           </div>
         </form>
       </main>
+      <PublicFooter />
     </>
   );
 }
@@ -937,6 +798,7 @@ function Confirmation() {
           <Link to="/order">Start an order</Link>
         )}
       </main>
+      <PublicFooter />
     </>
   );
 }
@@ -948,7 +810,7 @@ function Login() {
       <PublicHeader />
       <main className="narrow panel">
         <p className="eyebrow">THE BAKERY WORKSPACE</p>
-        <h1>Welcome to CakeDesk.</h1>
+        <h1>Welcome to Bing’s Bakery.</h1>
         <p>
           This is a local demonstration, not secure staff authentication. Choose
           a fictional role to explore its workflow.
@@ -982,6 +844,7 @@ function Login() {
           authorization. Never enter real customer information here.
         </p>
       </main>
+      <PublicFooter />
     </>
   );
 }
@@ -1091,6 +954,7 @@ function Demo() {
           <span className="quiet"> {db.orders.length} local records</span>
         </div>
       </main>
+      <PublicFooter />
     </>
   );
 }
@@ -1099,6 +963,7 @@ const navItems = [
   ["orders", "Orders", ClipboardList],
   ["orders/new", "New order", Plus],
   ["quotes", "Quotes", MessageSquare],
+  ["messages", "Contact inbox", MessageSquare],
   ["production", "Production", ChefHat],
   ["calendar", "Calendar", CalendarDays],
   ["reports", "Reports", ChartNoAxesCombined],
@@ -1108,38 +973,53 @@ function Staff() {
   const { role, setRole } = useApp();
   const [menu, M] = useState(false);
   const loc = useLocation();
+  const currentPath = loc.pathname.replace(/\/+$/, "");
+  const section =
+    currentPath === "/staff/orders/new"
+      ? "orders/new"
+      : currentPath.startsWith("/staff/orders/")
+        ? "orders"
+        : currentPath.replace(/^\/staff\/?/, "");
+  useEffect(() => {
+    M(false);
+  }, [loc.pathname]);
   if (!role) return <Navigate to="/staff/login" />;
   const manager = ["Owner", "Manager"].includes(role);
   const allowed =
     role === "Baker"
-      ? ["", "production", "calendar"]
+      ? ["production", "calendar"]
       : role === "Counter"
-        ? ["", "orders", "orders/new", "production", "calendar"]
+        ? ["", "orders", "orders/new", "messages", "production", "calendar"]
         : manager
-          ? navItems.map((x) => x[0])
+          ? navItems
+              .filter(([p]) => p !== "settings" || role === "Owner")
+              .map((x) => x[0])
           : [];
   return (
     <div className="staff-layout">
-      <aside className={menu ? "open" : ""}>
+      {menu && (
+        <button
+          className="workspace-scrim"
+          aria-label="Close workspace navigation"
+          onClick={() => M(false)}
+        />
+      )}
+      <aside id="workspace-sidebar" className={menu ? "open" : ""}>
         <Brand />
         <p className="sidebar-label">BAKERY WORKSPACE</p>
-        <nav>
+        <nav aria-label="Bakery workspace">
           {navItems
             .filter(([p]) => allowed.includes(p))
             .map(([p, label, Icon]) => (
               <Link
                 key={p}
                 to={"/staff" + (p ? "/" + p : "")}
-                className={
-                  loc.pathname === "/staff" + (p ? "/" + p : "")
-                    ? "selected"
-                    : ""
-                }
+                className={section === p ? "selected" : ""}
+                aria-current={section === p ? "page" : undefined}
                 onClick={() => M(false)}
               >
                 <Icon size={18} />
                 {label}
-                {p === "quotes" && <span className="nav-dot" />}
               </Link>
             ))}
         </nav>
@@ -1168,6 +1048,8 @@ function Staff() {
           <button
             className="mobile-menu icon-button"
             aria-label="Toggle navigation"
+            aria-expanded={menu}
+            aria-controls="workspace-sidebar"
             onClick={() => M(!menu)}
           >
             <Menu size={22} />
@@ -1176,9 +1058,12 @@ function Staff() {
             <span className="muted">Workspace</span>
             <ChevronRight size={13} />
             <span>
-              {navItems.find(
-                ([p]) => loc.pathname === "/staff" + (p ? "/" + p : ""),
-              )?.[1] || "CakeCard"}
+              {navItems.find(([p]) => section === p)?.[1] || "Workspace"}
+              {section === "orders" && currentPath !== "/staff/orders" && (
+                <>
+                  <ChevronRight size={13} /> CakeCard
+                </>
+              )}
             </span>
           </div>
           <Link to="/" className="view-site">
@@ -1217,8 +1102,18 @@ function Staff() {
               path="quotes"
               element={manager ? <Orders quotes /> : <Denied />}
             />
-            <Route path="production" element={<Production />} />
-            <Route path="calendar" element={<Production calendar />} />
+            <Route
+              path="messages"
+              element={role === "Baker" ? <Denied /> : <ContactInbox />}
+            />
+            <Route
+              path="production"
+              element={<Production key="production" />}
+            />
+            <Route
+              path="calendar"
+              element={<Production key="calendar" calendar />}
+            />
             <Route
               path="reports"
               element={manager ? <Reports /> : <Denied />}
@@ -1227,10 +1122,10 @@ function Staff() {
               path="settings"
               element={role === "Owner" ? <Settings /> : <Denied />}
             />
-            <Route path="*" element={<Navigate to="/staff" />} />
+            <Route path="*" element={<NotFound staff />} />
           </Routes>
           <div className="workspace-footer">
-            <span>BING’S CAKEDESK</span>
+            <span>BING’S BAKERY</span>
             <span>Made for the way a bakery works.</span>
             <span>LOCAL DEMO · SAMPLE DATA</span>
           </div>
@@ -1289,6 +1184,7 @@ function Overview() {
       o.status !== "Canceled" &&
       Date.now() - Date.parse(o.quotes.at(-1)?.sent || o.created) > 86400000,
   );
+  const reviewPath = role === "Counter" ? "/staff/orders" : "/staff/quotes";
   const cards = [
     ["Today’s pickups", today.length, "Confirmed for today", CalendarDays],
     ["Needs review", review.length, "A little attention needed", MessageSquare],
@@ -1312,7 +1208,15 @@ function Overview() {
         {cards.map(([label, n, desc, Icon], i) => (
           <Link
             key={label}
-            to={i === 0 || i === 2 ? "/staff/production" : "/staff/quotes"}
+            to={
+              i === 0
+                ? "/staff/production?date=" + day()
+                : i === 2
+                  ? "/staff/production?date=" + day(1)
+                  : i === 1
+                    ? reviewPath + "?status=Needs%20review"
+                    : reviewPath + "?status=Awaiting%20Approval"
+            }
             className={"stat stat-" + i}
           >
             <div>
@@ -1357,7 +1261,10 @@ function Overview() {
             A few ideas are waiting for your expertise. Review the details and
             keep the conversation going.
           </p>
-          <Link className="button secondary" to="/staff/quotes">
+          <Link
+            className="button secondary"
+            to={reviewPath + "?status=Needs%20review"}
+          >
             Review requests <ArrowRight size={15} />
           </Link>
           <div className="overdue">
@@ -1470,7 +1377,13 @@ function OrderTable({ orders }: { orders: Order[] }) {
 function Orders({ quotes = false }: { quotes?: boolean }) {
   const { db } = useApp();
   const [q, Q] = useState("");
-  const [filter, F] = useState("All");
+  const [params] = useSearchParams();
+  const status = params.get("status") || "All";
+  const [filter, F] = useState(status);
+  useEffect(() => {
+    F(status);
+    Q("");
+  }, [status, quotes]);
   const orders = db.orders.filter(
     (o) =>
       (!quotes ||
@@ -1479,7 +1392,10 @@ function Orders({ quotes = false }: { quotes?: boolean }) {
           "Needs Clarification",
           "Awaiting Approval",
         ].includes(o.status)) &&
-      (filter === "All" || o.status === filter) &&
+      (filter === "All" ||
+        o.status === filter ||
+        (filter === "Needs review" &&
+          ["Awaiting Review", "Needs Clarification"].includes(o.status))) &&
       [o.id, o.name, o.phone, o.date, o.description]
         .join(" ")
         .toLowerCase()
@@ -1516,6 +1432,7 @@ function Orders({ quotes = false }: { quotes?: boolean }) {
           >
             {[
               "All",
+              "Needs review",
               "Awaiting Review",
               "Needs Clarification",
               "Awaiting Approval",
@@ -1705,6 +1622,7 @@ function Customer() {
             This private demo link is invalid or belongs to another browser.
           </p>
         </main>
+        <PublicFooter />
       </>
     );
   const quote = o.quotes.at(-1);
@@ -1937,6 +1855,7 @@ function Customer() {
           </div>
         </div>
       </main>
+      <PublicFooter />
     </>
   );
 }
@@ -2565,11 +2484,35 @@ function QuoteBuilder({ o }: { o: Order }) {
 }
 function Production({ calendar = false }: { calendar?: boolean }) {
   const { db, update, role, notice } = useApp();
-  const [date, D] = useState(day());
-  const [range, R] = useState("Today");
+  const [params] = useSearchParams();
+  const requestedDate = params.get("date");
+  const initialDate =
+    requestedDate &&
+    /^\d{4}-\d{2}-\d{2}$/.test(requestedDate) &&
+    Number.isFinite(Date.parse(requestedDate + "T12:00:00"))
+      ? requestedDate
+      : day();
+  const [date, D] = useState(initialDate);
+  const [range, R] = useState(
+    initialDate === day()
+      ? "Today"
+      : initialDate === day(1)
+        ? "Tomorrow"
+        : "Date",
+  );
+  useEffect(() => {
+    D(initialDate);
+    R(
+      initialDate === day()
+        ? "Today"
+        : initialDate === day(1)
+          ? "Tomorrow"
+          : "Date",
+    );
+  }, [initialDate, calendar]);
   const [filter, F] = useState("All");
   const [basis, B] = useState("pickup");
-  const [week, W] = useState(false);
+  const [week, W] = useState(calendar);
   const end = new Date(date + "T12:00:00");
   end.setDate(end.getDate() + 6);
   const endDate = `${end.getFullYear()}-${String(end.getMonth() + 1).padStart(2, "0")}-${String(end.getDate()).padStart(2, "0")}`;
@@ -2604,6 +2547,7 @@ function Production({ calendar = false }: { calendar?: boolean }) {
               key={x}
               onClick={() => {
                 R(x);
+                W(calendar && x === "This week");
                 D(x === "Tomorrow" ? day(1) : day());
               }}
             >
@@ -2616,6 +2560,7 @@ function Production({ calendar = false }: { calendar?: boolean }) {
           aria-label="Production date"
           value={date}
           onChange={(e) => {
+            if (!e.target.value) return;
             D(e.target.value);
             R("Date");
           }}
@@ -2644,7 +2589,10 @@ function Production({ calendar = false }: { calendar?: boolean }) {
             <input
               type="checkbox"
               checked={week}
-              onChange={(e) => W(e.target.checked)}
+              onChange={(e) => {
+                W(e.target.checked);
+                R(e.target.checked ? "This week" : "Date");
+              }}
             />
             Week view
           </label>
@@ -2657,7 +2605,18 @@ function Production({ calendar = false }: { calendar?: boolean }) {
             d.setDate(d.getDate() + i);
             const v = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
             return (
-              <div className="panel" key={v}>
+              <button
+                type="button"
+                className="panel"
+                key={v}
+                aria-pressed={v === date}
+                aria-label={"View pickups for " + v}
+                onClick={() => {
+                  D(v);
+                  W(false);
+                  R("Date");
+                }}
+              >
                 <span>
                   {d.toLocaleDateString("en-US", {
                     weekday: "short",
@@ -2668,7 +2627,7 @@ function Production({ calendar = false }: { calendar?: boolean }) {
                   {db.orders.filter((o) => committed(o) && o.date === v).length}{" "}
                   cakes
                 </b>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -2864,7 +2823,7 @@ function Reports() {
             className="button secondary"
             onClick={() =>
               download(
-                "cakedesk-orders.csv",
+                "bings-bakery-orders.csv",
                 csv(db.orders),
                 "text/csv;charset=utf-8",
               )
@@ -2935,7 +2894,7 @@ function Settings() {
     try {
       const x = JSON.parse(await file.text());
       if (x.version !== 1 || !validDB(x.data))
-        throw Error("Not a supported CakeDesk export.");
+        throw Error("Not a supported Bing’s Bakery export.");
       R(x.data);
       E("");
     } catch (e) {
@@ -3059,7 +3018,7 @@ function Settings() {
               className="button secondary"
               onClick={() => {
                 download(
-                  "cakedesk-backup-" + day() + ".json",
+                  "bings-bakery-backup-" + day() + ".json",
                   JSON.stringify(
                     { version: 1, exportedAt: stamp(), data: db },
                     null,
@@ -3072,7 +3031,7 @@ function Settings() {
               <Download size={16} /> Download full local backup
             </button>
             <hr />
-            <Field label="Restore a CakeDesk JSON export">
+            <Field label="Restore a Bing’s Bakery JSON export">
               <input
                 type="file"
                 accept="application/json,.json"

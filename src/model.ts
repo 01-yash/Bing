@@ -230,7 +230,7 @@ export function seed(): DB {
       classicPrice: 48,
       staff: "Demo Owner, Demo Manager, Demo Counter, Demo Baker",
       emailTemplate:
-        "Your CakeDesk request has an update. Please review your order link.",
+        "Your Bing’s Bakery request has an update. Please review your order link.",
     },
     incidents: [],
   };

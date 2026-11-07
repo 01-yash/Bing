@@ -2399,3 +2399,373 @@ th {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* A consistent bakery identity and clear navigation across every screen. */
+.public-header.bakery-header {
+  max-width: 1320px;
+  min-height: 100px;
+  height: auto;
+  padding: 24px 44px;
+  gap: 24px;
+  position: relative;
+  z-index: 20;
+  background: #f8f5ef;
+}
+.bakery-header .brand {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 30px;
+  letter-spacing: -0.03em;
+}
+.bakery-header .brand-icon {
+  width: 43px;
+  height: 48px;
+  background: #fffdf8;
+}
+.bakery-header .brand small {
+  font-size: 7px;
+  letter-spacing: 0.15em;
+}
+.public-header.bakery-header nav {
+  gap: 25px;
+}
+.bakery-header nav > a:not(.button) {
+  padding: 13px 0;
+  position: relative;
+  font-size: 12px;
+  font-weight: 500;
+  color: #7c6657;
+}
+.bakery-header nav > a:not(.button):hover,
+.bakery-header nav > a[aria-current="page"]:not(.button) {
+  color: #8a4144;
+}
+.bakery-header nav > a[aria-current="page"]:not(.button)::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #8a4144;
+}
+.bakery-header nav > .button[aria-current="page"] {
+  background: #683033;
+  box-shadow: 0 0 0 3px #e6d0cb;
+}
+.public-menu-button {
+  display: none;
+}
+footer.bakery-footer {
+  max-width: 1320px;
+  display: block;
+  padding: 42px 44px 20px;
+  background: #f1ebe1;
+  border-top: 1px solid #e2d6c8;
+}
+.bakery-footer-top {
+  display: grid;
+  grid-template-columns: 1.25fr 1.1fr 1fr 1fr;
+  gap: 35px;
+}
+.bakery-footer .brand {
+  display: flex;
+  gap: 11px;
+  font-size: 27px;
+  font-family: "EB Garamond", Georgia, serif;
+}
+.bakery-footer .brand small {
+  font-size: 6.5px;
+  letter-spacing: 0.13em;
+}
+.bakery-footer .brand-icon {
+  flex-shrink: 0;
+}
+.bakery-footer-top h3 {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.bakery-footer-top p {
+  font-size: 11px;
+  line-height: 2.1;
+  margin-top: 19px;
+}
+.bakery-footer-top a:not(.brand) {
+  display: flex;
+  gap: 7px;
+  font-size: 11px;
+  line-height: 1.8;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.bakery-footer-top a:not(.brand):hover {
+  color: #8a4144;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.bakery-footer-top a svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.bakery-footer-top p b {
+  font-weight: 500;
+  color: #675241;
+}
+.bakery-footer-bottom {
+  border-top: 1px solid #dfd3c4;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 36px;
+  padding-top: 20px;
+  font-size: 9px;
+  color: #8a7664;
+}
+.bakery-footer-bottom a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.staff-layout aside {
+  overflow-y: auto;
+}
+.staff-layout aside .brand {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 26px;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.staff-layout aside .brand small {
+  font-size: 6px;
+  letter-spacing: 0.1em;
+}
+.staff-layout aside nav a {
+  position: relative;
+  color: #746253;
+  min-height: 45px;
+}
+.staff-layout aside nav a.selected {
+  background: #efe0da;
+  color: #7d3439;
+  box-shadow: inset 3px 0 #8a4144;
+  font-weight: 600;
+}
+.staff-layout aside nav a.selected:hover {
+  background: #ebdad3;
+}
+.workspace-header > div {
+  font-size: 11px;
+}
+.workspace-scrim {
+  display: none;
+}
+.workspace .panel {
+  box-shadow: 0 3px 18px #47362d03;
+}
+.workspace .page-heading h1 {
+  font-size: 42px;
+}
+.workspace .stat {
+  transition:
+    box-shadow 0.16s,
+    border-color 0.16s,
+    transform 0.16s;
+}
+.workspace .stat:hover {
+  border-color: #c9b29c;
+  box-shadow: 0 7px 20px #47362d09;
+  transform: translateY(-2px);
+}
+.workspace .panel-title h2 {
+  font-size: 27px;
+}
+.workspace th {
+  font-size: 9px;
+  color: #82705f;
+}
+.workspace td {
+  font-size: 12px;
+}
+.workspace td small {
+  font-size: 11px;
+  color: #8c7764;
+}
+.workspace .badge {
+  font-size: 10px;
+  padding: 6px 9px;
+}
+.workspace .stat > div {
+  font-size: 12px;
+}
+.workspace .stat small {
+  font-size: 10px;
+  color: #8a7664;
+}
+.workspace .daily-note p {
+  color: #8c7764;
+}
+@media (max-width: 1100px) {
+  .public-header.bakery-header {
+    padding: 22px 28px;
+    gap: 20px;
+  }
+  .public-header.bakery-header nav {
+    gap: 18px;
+  }
+  .bakery-header .brand {
+    font-size: 27px;
+  }
+  .bakery-footer-top {
+    gap: 22px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .bakery-footer-bottom {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 900px) {
+  .public-header.bakery-header {
+    min-height: 90px;
+    flex-wrap: wrap;
+  }
+  .public-menu-button {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #ddcfc0;
+    border-radius: 5px;
+  }
+  .public-header.bakery-header nav {
+    display: none;
+  }
+  .public-header.bakery-header nav.is-open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    width: 100%;
+    padding-top: 16px;
+    border-top: 1px solid #e5d9cc;
+  }
+  .public-header.bakery-header nav > a:not(.button) {
+    display: block;
+    padding: 13px 14px;
+    font-size: 13px;
+    border-radius: 4px;
+  }
+  .bakery-header nav > a[aria-current="page"]:not(.button) {
+    background: #efe0da;
+    box-shadow: inset 3px 0 #8a4144;
+  }
+  .bakery-header nav > a[aria-current="page"]:not(.button)::after {
+    display: none;
+  }
+  .public-header.bakery-header nav .button {
+    margin-top: 8px;
+    font-size: 12px;
+    min-height: 44px;
+  }
+  .staff-layout aside .brand {
+    font-size: 23px;
+  }
+  .staff-layout aside .brand-icon {
+    min-width: 27px;
+  }
+  .staff-layout aside .brand small {
+    font-size: 5.2px;
+  }
+}
+@media (max-width: 620px) {
+  .public-header.bakery-header {
+    min-height: 84px;
+    padding: 18px 22px;
+    gap: 18px;
+  }
+  .bakery-header .brand {
+    font-size: 28px;
+  }
+  .bakery-header .brand small {
+    font-size: 6px;
+  }
+  .public-header.bakery-header .brand-icon {
+    width: 35px;
+    height: 41px;
+  }
+  footer.bakery-footer {
+    padding: 32px 22px 20px;
+  }
+  .bakery-footer-top {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .bakery-footer-top > div:first-child {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dfd3c4;
+  }
+  .bakery-footer-top h3 {
+    margin-bottom: 12px;
+  }
+  .bakery-footer-top p {
+    margin-top: 8px;
+  }
+  .bakery-footer-bottom {
+    display: block;
+    line-height: 1.7;
+    margin-top: 25px;
+  }
+  .bakery-footer-bottom > span {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .workspace-scrim {
+    display: block;
+    position: fixed;
+    inset: 32px 0 0;
+    background: #30231e66;
+    z-index: 29;
+    border: 0;
+  }
+  .staff-layout aside .brand {
+    font-size: 27px;
+  }
+  .staff-layout aside .brand small {
+    font-size: 6px;
+  }
+  .workspace .page-heading h1 {
+    font-size: 35px;
+  }
+  .workspace .stat > div {
+    font-size: 11px;
+  }
+  .workspace .badge {
+    font-size: 9px;
+    padding: 5px 7px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+.calendar-strip button.panel {
+  text-align: left;
+  color: var(--ink);
+  background: #fffdfa;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.calendar-strip button.panel:hover {
+  border-color: #bca58e;
+  background: #f8efe5;
+}
+.calendar-strip button.panel[aria-pressed="true"] {
+  border-color: #8a4144;
+  background: #f2e3dc;
+  color: #8a4144;
+}

@@ -1,9 +1,9 @@
 {
-  "name": "Bing's CakeDesk",
+  "name": "Bing's Bakery",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
   "forwardPorts": [5173],
   "portsAttributes": {
-    "5173": { "label": "CakeDesk", "onAutoForward": "notify" }
+    "5173": { "label": "Bing’s Bakery", "onAutoForward": "notify" }
   },
   "postCreateCommand": "npm ci",
   "customizations": { "vscode": { "extensions": ["dbaeumer.vscode-eslint"] } }
