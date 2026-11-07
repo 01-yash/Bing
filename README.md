@@ -11,7 +11,7 @@ A working React / TypeScript competition demonstration of a shared cake-order re
 
 The Ports panel should use **HTTP** as the port protocol; GitHub provides the public HTTPS forwarding URL. Vite binds all interfaces and stays on 5173; it reports an error instead of silently changing to 5174. `npm run dev` (or `npm start`) is also available for foreground development; leave that terminal running.
 
-Keep the forwarded port private when working with your demo. No credentials, API keys, database account or paid service is needed. Font files and illustrated cake assets are bundled; the running app does not need external image or font services.
+Keep the forwarded port private when working with your demo. No credentials, API keys, database account or paid service is needed. Font files, cake images and illustrations are bundled; the running app does not need external image or font services.
 
 For another machine: install Node 22 or later, run `npm ci`, then `npm run dev`. If your environment cannot write npm’s default cache, use `npm ci --cache /tmp/cakedesk-npm`.
 
@@ -55,7 +55,7 @@ If startup reports a busy port or another error, read the log path printed by th
 
 Demo role selection restricts the interface but is **not authentication or an authorization security boundary**. Customer links use random UUID tokens and a contact check for approval, but all local data is available to the person controlling this browser. Do not deploy this local demonstration for real orders. It cannot satisfy production privacy/isolation requirements. A private browser link does not provide cross-device database sharing.
 
-There is no card processing, email delivery, automatic reminder, online store integration, scheduled backup or offline synchronization. The interface explicitly labels these as unconfigured. Payment records require staff to attest they verified an external payment; customer actions cannot mark payments paid. Manual JSON exports are real file generation, not scheduled or remote backups. Uploaded illustrations and all sample orders are fictional.
+There is no card processing, email delivery, automatic reminder, online store integration, scheduled backup or offline synchronization. The interface explicitly labels these as unconfigured. Payment records require staff to attest they verified an external payment; customer actions cannot mark payments paid. Manual JSON exports are real file generation, not scheduled or remote backups. Uploaded illustrations and all sample orders are fictional. The two cake-card images are generated design examples, not photographs of Bing’s products.
 
 Production deployment requirements and the acceptance-test mapping are in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Presentation notes are in [docs/PRESENTATION.md](docs/PRESENTATION.md).
 

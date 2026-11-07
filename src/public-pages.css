@@ -283,19 +283,27 @@
   overflow: hidden;
   background: #ece2d6;
 }
-.bakery-cake-picture > .cake-art {
+.bakery-cake-picture > .bakery-cake-photo {
+  display: block;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
-.bakery-cake-picture .art-caption {
-  display: none;
+.bakery-cake-picture > .bakery-cake-photo-custom {
+  object-position: center top;
 }
 .bakery-picture-label {
   position: absolute;
   bottom: 15px;
-  left: 21px;
-  font-size: 7px;
-  letter-spacing: 0.16em;
-  color: #a28b75;
+  left: 18px;
+  max-width: calc(100% - 36px);
+  padding: 7px 9px;
+  border-radius: 3px;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: #fff8ee;
+  background: #39271ccc;
 }
 .bakery-cake-copy {
   padding: 28px 29px 30px;

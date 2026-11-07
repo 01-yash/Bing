@@ -85,7 +85,15 @@ function CakeChoices({ full = false }: { full?: boolean }) {
           className="bakery-cake-picture"
           aria-label="Choose a classic cake"
         >
-          <CakeArt />
+          <img
+            className="bakery-cake-photo"
+            src="/images/classic-birthday-cake.webp"
+            alt="Classic vanilla buttercream birthday cake with piped borders, pastel sprinkles and three pink candles"
+            width={1774}
+            height={887}
+            loading="lazy"
+            decoding="async"
+          />
           <span className="bakery-picture-label">
             THE EVERYDAY CELEBRATIONS
           </span>
@@ -115,7 +123,15 @@ function CakeChoices({ full = false }: { full?: boolean }) {
           className="bakery-cake-picture"
           aria-label="Request a custom design"
         >
-          <CakeArt floral />
+          <img
+            className="bakery-cake-photo bakery-cake-photo-custom"
+            src="/images/custom-floral-cake.webp"
+            alt="Custom two-tier ivory cake with intricate botanical piping, blush sugar roses, peonies and delicate blue flowers"
+            width={1774}
+            height={887}
+            loading="lazy"
+            decoding="async"
+          />
           <span className="bakery-picture-label">THE ONE-OF-A-KIND IDEAS</span>
         </Link>
         <div className="bakery-cake-copy">
@@ -335,8 +351,8 @@ export function CakesPage() {
           </div>
         </div>
         <p className="bakery-demo-caption">
-          Illustrations show design ideas, not a live product catalog. Options
-          and prices in this competition demonstration are examples.
+          Cake images are generated design examples, not photographs of Bing’s
+          products. Options and prices in this demonstration are examples.
         </p>
       </main>
       <PublicFooter />
